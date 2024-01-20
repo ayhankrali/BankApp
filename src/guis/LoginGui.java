@@ -42,7 +42,15 @@ public class LoginGui extends BaseFrame {
 
         //create username field
         JTextField usernameField = new JTextField();
-        usernameField.setBounds(20,160,getWidth() - 50,40);
+        usernameField.setBounds(20, 160, getWidth() - 50, 40);
+        usernameField.setFont(new Font("Dialog", Font.PLAIN, 28));
         add(usernameField);
+
+        //create password label
+        JLabel passwordLabel = new JLabel("Password : ");
+        passwordLabel.setBounds(20, 280, getWidth() - 50, 24);
+        passwordLabel.setFont(new Font("Dialog", Font.PLAIN, 20));
+        add(passwordLabel);
+
     }
 }
