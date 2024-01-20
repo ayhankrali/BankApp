@@ -52,5 +52,12 @@ public class LoginGui extends BaseFrame {
         passwordLabel.setFont(new Font("Dialog", Font.PLAIN, 20));
         add(passwordLabel);
 
+        //create password field
+        JPasswordField passwordField = new JPasswordField();
+        passwordField.setBounds(20, 320, getWidth() - 50, 40);
+        passwordField.setFont(new Font("Dialog", Font.PLAIN, 28));
+        add(passwordField);
+
+
     }
 }
