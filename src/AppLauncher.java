@@ -9,7 +9,7 @@ public class AppLauncher {
             @Override
             public void run() {
                 new LoginGui().setVisible(true);
-
+                System.out.println("Working perfect");
             }
         });
     }
