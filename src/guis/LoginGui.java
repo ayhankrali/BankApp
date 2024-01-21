@@ -7,6 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.font.FontRenderContext;
 
 /*
@@ -80,7 +82,7 @@ public class LoginGui extends BaseFrame {
                 User user = MyJDBC.validateLogin(username, password);
 
                 // if a user is null it means invalid otherwise it is a valid account
-                if(user != null){
+                if (user != null) {
                     // means valid login
 
                     // dispose this gui
@@ -92,7 +94,7 @@ public class LoginGui extends BaseFrame {
 
                     // show success dialog
                     JOptionPane.showMessageDialog(bankingAppGui, "Login Successfully!");
-                }else{
+                } else {
                     // invalid login
                     JOptionPane.showMessageDialog(LoginGui.this, "Login failed...");
                 }
@@ -106,6 +108,19 @@ public class LoginGui extends BaseFrame {
         registerLabel.setBounds(0, 510, getWidth() - 10, 30);
         registerLabel.setFont(new Font("Dialog", Font.PLAIN, 20));
         registerLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        //add on event listener, so when the mouse is clicked it will launch the register
+        registerLabel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                //dispose og the gui
+                LoginGui.this.dispose();
+
+                //launch the register gui
+                new RegisterGui().setVisible(true);
+            }
+        });
+
         add(registerLabel);
 
 
