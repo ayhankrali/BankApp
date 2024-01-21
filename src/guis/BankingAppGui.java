@@ -9,6 +9,10 @@ import java.awt.*;
 this extends from the BaseFrame
 */
 public class BankingAppGui extends BaseFrame {
+    private JTextField currentBalanceField;
+    public JTextField getCurrentBalancedField(){return currentBalanceField;}
+
+
     public BankingAppGui(User user) {
         super("Banking App", user);
 
@@ -17,6 +21,7 @@ public class BankingAppGui extends BaseFrame {
     @Override
     protected void addGuiComponents() {
         //create a welcome message
+
         String welcomeMessage = "<html>" +
                 "<body style='text-align:center'>" +
                 "<b>Hello " + user.getUsername() + "</b><br>" +
@@ -33,5 +38,20 @@ public class BankingAppGui extends BaseFrame {
         currentBalanceLabel.setFont(new Font("Dialog", Font.BOLD, 22));
         currentBalanceLabel.setHorizontalAlignment(SwingConstants.CENTER);
         add(currentBalanceLabel);
+
+        //create current balance field
+        currentBalanceField = new JTextField("$" + user.getCurrentBalance());
+        currentBalanceField.setBounds(15, 120, getWidth() - 50, 40);
+        currentBalanceField.setFont(new Font("Dialog", Font.BOLD, 28));
+        currentBalanceField.setHorizontalAlignment(SwingConstants.RIGHT);
+        currentBalanceField.setEditable(false);
+        add(currentBalanceField);
+
+        //deposit button
+        JButton depositButton = new JButton("Deposit");
+        depositButton.setBounds(15, 180, getWidth() - 50, 50);
+        depositButton.setFont(new Font("Dialog", Font.BOLD, 22));
+        add(depositButton);
+
     }
 }
