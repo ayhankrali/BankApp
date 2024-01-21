@@ -2,16 +2,10 @@ package guis;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.font.FontRenderContext;
 
-/*
-    This gui will allow user to log in or launch the register gui
-    This extends from the BaseFrame, which we will need to define our own addGuiComponent()
- */
-public class LoginGui extends BaseFrame {
-
-    public LoginGui() {
-        super("Banking App Login");
+public class RegisterGui extends BaseFrame {
+    public RegisterGui() {
+        super("Banking App Register");
     }
 
     @Override
@@ -48,15 +42,23 @@ public class LoginGui extends BaseFrame {
 
         //create password label
         JLabel passwordLabel = new JLabel("Password : ");
-        passwordLabel.setBounds(20, 280, getWidth() - 50, 24);
+        passwordLabel.setBounds(20, 220, getWidth() - 50, 24);
         passwordLabel.setFont(new Font("Dialog", Font.PLAIN, 20));
         add(passwordLabel);
 
         //create password field
         JPasswordField passwordField = new JPasswordField();
-        passwordField.setBounds(20, 320, getWidth() - 50, 40);
+        passwordField.setBounds(20, 260, getWidth() - 50, 40);
         passwordField.setFont(new Font("Dialog", Font.PLAIN, 28));
         add(passwordField);
+
+        //re-type password label
+        JLabel rePasswordLabel = new JLabel("Re-type Password: ");
+        rePasswordLabel.setBounds(20, 320, getWidth() - 50, 40);
+        rePasswordLabel.setFont(new Font("Dialog", Font.PLAIN, 20));
+        add(rePasswordLabel);
+
+        //
 
         //create login button
         JButton loginButton = new JButton("Login");

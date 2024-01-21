@@ -1,4 +1,5 @@
 import guis.LoginGui;
+import guis.RegisterGui;
 
 import javax.swing.*;
 
@@ -8,8 +9,9 @@ public class AppLauncher {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new LoginGui().setVisible(true);
-                System.out.println("Working perfect");
+            //    new LoginGui().setVisible(true);
+
+                new RegisterGui().setVisible(true);
             }
         });
     }
