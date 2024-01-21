@@ -59,7 +59,15 @@ public class LoginGui extends BaseFrame {
         add(passwordField);
 
         //create login button
-        JButton loginButton = new JButton();
+        JButton loginButton = new JButton("Login");
+        loginButton.setBounds(20, 460, getWidth() - 50, 40);
+        loginButton.setFont(new Font("Dialog", Font.BOLD, 28));
+        add(loginButton);
+
+        //create register label
+
+
+
 
 
 
