@@ -58,6 +58,10 @@ public class LoginGui extends BaseFrame {
         passwordField.setFont(new Font("Dialog", Font.PLAIN, 28));
         add(passwordField);
 
+        //create login button
+        JButton loginButton = new JButton();
+
+
 
     }
 }
