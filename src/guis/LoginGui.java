@@ -1,7 +1,12 @@
 package guis;
 
+import db_objs.MyJDBC;
+import db_objs.User;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.font.FontRenderContext;
 
 /*
@@ -62,6 +67,38 @@ public class LoginGui extends BaseFrame {
         JButton loginButton = new JButton("Login");
         loginButton.setBounds(20, 460, getWidth() - 50, 40);
         loginButton.setFont(new Font("Dialog", Font.BOLD, 28));
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // get username
+                String username = usernameField.getText();
+
+                // get password
+                String password = String.valueOf(passwordField.getPassword());
+
+                // validate login
+                User user = MyJDBC.validateLogin(username, password);
+
+                // if a user is null it means invalid otherwise it is a valid account
+                if(user != null){
+                    // means valid login
+
+                    // dispose this gui
+                    LoginGui.this.dispose();
+
+                    // launch bank app gui
+                    BankingAppGui bankingAppGui = new BankingAppGui(user);
+                    bankingAppGui.setVisible(true);
+
+                    // show success dialog
+                    JOptionPane.showMessageDialog(bankingAppGui, "Login Successfully!");
+                }else{
+                    // invalid login
+                    JOptionPane.showMessageDialog(LoginGui.this, "Login failed...");
+                }
+            }
+
+        });
         add(loginButton);
 
         // create register label
