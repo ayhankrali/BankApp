@@ -58,20 +58,24 @@ public class RegisterGui extends BaseFrame {
         rePasswordLabel.setFont(new Font("Dialog", Font.PLAIN, 20));
         add(rePasswordLabel);
 
-        //
+        //create re-type password field
+        JPasswordField rePasswordField = new JPasswordField();
+        rePasswordField.setBounds(20, 360, getWidth() - 50, 40);
+        rePasswordField.setFont(new Font("Dialog", Font.PLAIN, 28));
+        add(rePasswordField);
 
         //create login button
-        JButton loginButton = new JButton("Login");
-        loginButton.setBounds(20, 460, getWidth() - 50, 40);
-        loginButton.setFont(new Font("Dialog", Font.BOLD, 28));
-        add(loginButton);
+        JButton registerButton = new JButton("Register");
+        registerButton.setBounds(20, 460, getWidth() - 50, 40);
+        registerButton.setFont(new Font("Dialog", Font.BOLD, 23));
+        add(registerButton);
 
-        // create register label
-        JLabel registerLabel = new JLabel("<html><a href=\"#\">Don't have an account? Register Here</a></html>");
-        registerLabel.setBounds(0, 510, getWidth() - 10, 30);
-        registerLabel.setFont(new Font("Dialog", Font.PLAIN, 20));
-        registerLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        add(registerLabel);
+        // create login label
+        JLabel loginLabel = new JLabel("<html><a href=\"#\">Have an account? Sign-in here</a></html>");
+        loginLabel.setBounds(0, 510, getWidth() - 10, 30);
+        loginLabel.setFont(new Font("Dialog", Font.PLAIN, 20));
+        loginLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(loginLabel);
 
 
     }
