@@ -117,7 +117,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
         scrollPane.setBounds(0, 20, getWidth() - 15, getHeight() - 80);
 
-        // perform db call to retrieve all of the past transaction and store into array list
+        // perform db call to retrieve all the past transaction and store into an array list
         pastTransactions = MyJDBC.getPastTransaction(user);
 
         // iterate through the list and add to the gui

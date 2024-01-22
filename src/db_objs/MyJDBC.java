@@ -25,7 +25,7 @@ public class MyJDBC {
             );
 
             // replace the ? with value
-            // parameter index referring to the iteration of the ? so 1 is the first ? and 2 is the second ?
+            // parameter index referring to the iteration of the ? so 1 is the first ?, and 2 is the second?
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
 
