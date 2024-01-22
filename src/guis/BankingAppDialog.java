@@ -103,7 +103,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
 
     }
 
-    public void addPastTransactionComponents(){
+    public void addPastTransactionComponents() {
         // container where we will store each transaction
         pastTransactionPanel = new JPanel();
 
@@ -121,7 +121,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         pastTransactions = MyJDBC.getPastTransaction(user);
 
         // iterate through the list and add to the gui
-        for(int i = 0; i < pastTransactions.size(); i++){
+        for (int i = 0; i < pastTransactions.size(); i++) {
             // store current transaction
             Transaction pastTransaction = pastTransactions.get(i);
 
@@ -159,8 +159,6 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         // add to the dialog
         add(scrollPane);
     }
-
-
 
 
     private void handleTransaction(String transactionType, float amountVal) {
@@ -214,14 +212,14 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         bankingAppGui.getCurrentBalancedField().setText("$" + user.getCurrentBalance());
     }
 
-    private void handleTransfer(User user , String transferredUser,float amount){
-          //attempt to perform transfer
+    private void handleTransfer(User user, String transferredUser, float amount) {
+        //attempt to perform transfer
         // attempt to perform transfer
-        if(MyJDBC.transfer(user, transferredUser, amount)){
+        if (MyJDBC.transfer(user, transferredUser, amount)) {
             // show success dialog
             JOptionPane.showMessageDialog(this, "Transfer Success!");
             resetFieldsAndUpdateCurrentBalance();
-        }else{
+        } else {
             // show failure dialog
             JOptionPane.showMessageDialog(this, "Transfer Failed...");
         }
@@ -250,10 +248,10 @@ public class BankingAppDialog extends JDialog implements ActionListener {
             }
 
             //check to see withdrawal or transfer was pressed
-            if (buttonPressed.equalsIgnoreCase("WithDraw")){
-                handleTransaction(buttonPressed,amountVal);
+            if (buttonPressed.equalsIgnoreCase("WithDraw")) {
+                handleTransaction(buttonPressed, amountVal);
 
-            }else {
+            } else {
                 //transfer
                 String transferredUser = enterUserField.getText();
 

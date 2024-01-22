@@ -87,9 +87,9 @@ public class RegisterGui extends BaseFrame {
                 String rePassword = String.valueOf(rePasswordField.getPassword());
 
                 //we will need to validate the user input
-                if(validateUserInput(username, password, rePassword)){
+                if (validateUserInput(username, password, rePassword)) {
                     // attempt to register the user to the database
-                    if(MyJDBC.register(username, password)){
+                    if (MyJDBC.register(username, password)) {
                         // register success
                         // dispose of this gui
                         RegisterGui.this.dispose();
@@ -100,11 +100,11 @@ public class RegisterGui extends BaseFrame {
 
                         // create a result dialog
                         JOptionPane.showMessageDialog(loginGui, "Registered Account Successfully!");
-                    }else{
+                    } else {
                         // register failed
                         JOptionPane.showMessageDialog(RegisterGui.this, "Error: Username already taken");
                     }
-                }else{
+                } else {
                     // invalid user input
                     JOptionPane.showMessageDialog(RegisterGui.this,
                             "Error: Username must be at least 6 characters\n" +
@@ -132,15 +132,16 @@ public class RegisterGui extends BaseFrame {
         add(loginLabel);
 
     }
-    private boolean validateUserInput(String username, String password, String rePassword){
+
+    private boolean validateUserInput(String username, String password, String rePassword) {
         // all fields must have a value
-        if(username.length() == 0 || password.length() == 0 || rePassword.length() == 0) return false;
+        if (username.length() == 0 || password.length() == 0 || rePassword.length() == 0) return false;
 
         // the username has to be at least 6 characters long
-        if(username.length() < 6) return false;
+        if (username.length() < 6) return false;
 
         // password and repassword must be the same
-        if(!password.equals(rePassword)) return false;
+        if (!password.equals(rePassword)) return false;
 
         // passes validation
         return true;

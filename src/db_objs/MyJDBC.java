@@ -157,10 +157,11 @@ public class MyJDBC {
 
         return false;
     }
-      //true - transfer was a success
+
+    //true - transfer was a success
     //false - transfer was a fail
-    public static boolean transfer(User user, String transferredUsername, float transferAmount){
-        try{
+    public static boolean transfer(User user, String transferredUsername, float transferAmount) {
+        try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 
             PreparedStatement queryUser = connection.prepareStatement(
@@ -213,9 +214,8 @@ public class MyJDBC {
             }
 
 
-
         } catch (SQLException e) {
-           e.printStackTrace();
+            e.printStackTrace();
         }
 
         return false;
@@ -223,9 +223,9 @@ public class MyJDBC {
 
 
     // get all transactions (used for past transaction)
-    public static ArrayList<Transaction> getPastTransaction(User user){
+    public static ArrayList<Transaction> getPastTransaction(User user) {
         ArrayList<Transaction> pastTransactions = new ArrayList<>();
-        try{
+        try {
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 
             PreparedStatement selectAllTransaction = connection.prepareStatement(
@@ -235,8 +235,8 @@ public class MyJDBC {
 
             ResultSet resultSet = selectAllTransaction.executeQuery();
 
-            // iterate throught the results (if any)
-            while(resultSet.next()){
+            // iterate through the results (if any)
+            while (resultSet.next()) {
                 // create transaction obj
                 Transaction transaction = new Transaction(
                         user.getId(),
@@ -248,7 +248,7 @@ public class MyJDBC {
                 // store into an array list
                 pastTransactions.add(transaction);
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
 
