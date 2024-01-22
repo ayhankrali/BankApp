@@ -3,6 +3,7 @@ package guis;
   Display a custom for BankingAppGui
 */
 
+import db_objs.MyJDBC;
 import db_objs.Transaction;
 import db_objs.User;
 
@@ -20,7 +21,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
     private JTextField enterAmountField, enterUserField;
     private JButton actionButton;
     //private JPanel pastTransactionPanel;
-    // private ArrayList<Transaction> pastTransactions;
+    //private ArrayList<Transaction> pastTransactions;
 
     public BankingAppDialog(BankingAppGui bankingAppGui, User user) {
         // set the size
@@ -79,7 +80,7 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         actionButton = new JButton(actionButtonType);
         actionButton.setBounds(15, 300, getWidth() - 50, 40);
         actionButton.setFont(new Font("Dialog", Font.BOLD, 20));
-        actionButton.setHorizontalAlignment(SwingConstants.RIGHT);
+        actionButton.addActionListener(this);
         add(actionButton);
 
     }
@@ -111,18 +112,48 @@ public class BankingAppDialog extends JDialog implements ActionListener {
             user.setCurrentBalance(user.getCurrentBalance().add(new BigDecimal(amountVal)));
             //create transaction
 
-            transaction = new Transaction(user.getId(),transactionType,new BigDecimal(amountVal),null);
+            transaction = new Transaction(user.getId(), transactionType, new BigDecimal(amountVal), null);
 
-        }else {
+        } else {
             //withdraw transaction
             //subtract from current balance
             user.setCurrentBalance(user.getCurrentBalance().subtract(new BigDecimal(amountVal)));
 
             //i want to show a anegtive sign for the amount val when withdrawing
-            transaction = new Transaction(user.getId(),transactionType,new BigDecimal(amountVal),null);
+            transaction = new Transaction(user.getId(), transactionType, new BigDecimal(amountVal), null);
         }
 
         //update database
+        if (MyJDBC.addTransactionToDatabase(transaction) && MyJDBC.updateCurrentBalance(user)) {
+            // show success dialog
+            JOptionPane.showMessageDialog(this, transactionType + " Successfully!");
+
+            // reset the fields
+            resetFieldsAndUpdateCurrentBalance();
+        } else {
+            // show failure dialog
+            JOptionPane.showMessageDialog(this, transactionType + " Failed...");
+        }
+
+    }
+
+    private void resetFieldsAndUpdateCurrentBalance() {
+        // reset fields
+        enterAmountField.setText("");
+
+        // only appears when transfer is clicked
+        if (enterUserField != null) {
+            enterUserField.setText("");
+        }
+
+        // update current balance on dialog
+        balanceLabel.setText("Balance: $" + user.getCurrentBalance());
+
+        // update current balance on main gui
+        bankingAppGui.getCurrentBalancedField().setText("$" + user.getCurrentBalance());
+    }
+
+    private void handleTransfer(User user , String transferredUser,float amount){
 
     }
 
@@ -131,14 +162,33 @@ public class BankingAppDialog extends JDialog implements ActionListener {
         String buttonPressed = e.getActionCommand();
 
         //get amount val
-        float amount = Float.parseFloat(enterAmountField.getText());
+        float amountVal = Float.parseFloat(enterAmountField.getText());
 
         //pressed deposit
         if (buttonPressed.equalsIgnoreCase("Deposit")) {
             // I want to handle the deposit transaction
+            handleTransaction(buttonPressed, amountVal);
+        } else {
+            //pressed withdrawal or transfer
 
+            //validate input by making sure that withdraw or transfer amount is less than the current balance
+            int result = user.getCurrentBalance().compareTo(BigDecimal.valueOf(amountVal));
+            if (result < 0) {
+                // display error dialog
+                JOptionPane.showMessageDialog(this, "Error: Input value is more than current balance");
+                return;
+            }
+
+            //check to see withdrawal or transfer was pressed
+            if (buttonPressed.equalsIgnoreCase("WithDraw")){
+                handleTransaction(buttonPressed,amountVal);
+
+            }else {
+                //transfer
+                String transferredUser = enterUserField.getText();
+
+                //handle transfer
+            }
         }
-
-
     }
 }
