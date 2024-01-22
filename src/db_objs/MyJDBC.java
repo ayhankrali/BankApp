@@ -1,10 +1,11 @@
 package db_objs;
 /*
-    JDBC class is used to interact with  MySQL Database to perform activities such as retrieving and updating the db
+    JDBC class is used to interact with MySQL Database to perform activities such as retrieving and updating the db
  */
 
 import java.math.BigDecimal;
 import java.sql.*;
+import java.util.ArrayList;
 
 public class MyJDBC {
     private static final String DB_URL = "jdbc:mysql://127.0.0.1:3306/bankapp";
@@ -156,7 +157,8 @@ public class MyJDBC {
 
         return false;
     }
-
+      //true - transfer was a success
+    //false - transfer was a fail
     public static boolean transfer(User user, String transferredUsername, float transferAmount){
         try{
             Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
@@ -219,6 +221,39 @@ public class MyJDBC {
         return false;
     }
 
+
+    // get all transactions (used for past transaction)
+    public static ArrayList<Transaction> getPastTransaction(User user){
+        ArrayList<Transaction> pastTransactions = new ArrayList<>();
+        try{
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
+
+            PreparedStatement selectAllTransaction = connection.prepareStatement(
+                    "SELECT * FROM transactions WHERE user_id = ?"
+            );
+            selectAllTransaction.setInt(1, user.getId());
+
+            ResultSet resultSet = selectAllTransaction.executeQuery();
+
+            // iterate throught the results (if any)
+            while(resultSet.next()){
+                // create transaction obj
+                Transaction transaction = new Transaction(
+                        user.getId(),
+                        resultSet.getString("transaction_type"),
+                        resultSet.getBigDecimal("transaction_amount"),
+                        resultSet.getDate("transaction_date")
+                );
+
+                // store into an array list
+                pastTransactions.add(transaction);
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+
+        return pastTransactions;
+    }
 
 }
 
