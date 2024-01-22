@@ -105,8 +105,33 @@ public class MyJDBC {
             e.printStackTrace();
         }
         return true;
+    }
 
+    // true - update to db was a success
+    // false - update to the db was a fail
+    public static boolean addTransactionToDatabase(Transaction transaction) {
+        try {
+            Connection connection = DriverManager.getConnection(DB_URL, DB_USERNAME, DB_PASSWORD);
 
+            PreparedStatement insertTransaction = connection.prepareStatement(
+                    "INSERT transactions(user_id, transaction_type, transaction_amount, transaction_date) " +
+                            "VALUES(?, ?, ?, NOW())"
+            );
+
+            //put the current date
+            insertTransaction.setInt(1, transaction.getUserId());
+            insertTransaction.setString(2, transaction.getTransactionType());
+            insertTransaction.setBigDecimal(3, transaction.getTransactionAmount());
+
+            // update database
+            insertTransaction.executeUpdate();
+
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }
 

@@ -3,13 +3,17 @@ package guis;
   Display a custom for BankingAppGui
 */
 
+import db_objs.Transaction;
 import db_objs.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.math.BigDecimal;
 
 
-public class BankingAppDialog extends JDialog {
+public class BankingAppDialog extends JDialog implements ActionListener {
     private User user;
     private BankingAppGui bankingAppGui;
     private JLabel balanceLabel, enterAmountLabel, enterUserLabel;
@@ -80,7 +84,7 @@ public class BankingAppDialog extends JDialog {
 
     }
 
-    public void addUserField(){
+    public void addUserField() {
         //enter user label
         enterUserLabel = new JLabel("Enter User:");
         enterUserLabel.setBounds(0, 160, getWidth() - 20, 20);
@@ -94,6 +98,47 @@ public class BankingAppDialog extends JDialog {
         enterUserField.setFont(new Font("Dialog", Font.BOLD, 20));
         enterUserField.setHorizontalAlignment(SwingConstants.CENTER);
         add(enterUserField);
+
+    }
+
+    private void handleTransaction(String transactionType, float amountVal) {
+        Transaction transaction;
+
+        if (transactionType.equalsIgnoreCase("Deposit")) {
+            //deposit transaction type
+            //add to current balance
+
+            user.setCurrentBalance(user.getCurrentBalance().add(new BigDecimal(amountVal)));
+            //create transaction
+
+            transaction = new Transaction(user.getId(),transactionType,new BigDecimal(amountVal),null);
+
+        }else {
+            //withdraw transaction
+            //subtract from current balance
+            user.setCurrentBalance(user.getCurrentBalance().subtract(new BigDecimal(amountVal)));
+
+            //i want to show a anegtive sign for the amount val when withdrawing
+            transaction = new Transaction(user.getId(),transactionType,new BigDecimal(amountVal),null);
+        }
+
+        //update database
+
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        String buttonPressed = e.getActionCommand();
+
+        //get amount val
+        float amount = Float.parseFloat(enterAmountField.getText());
+
+        //pressed deposit
+        if (buttonPressed.equalsIgnoreCase("Deposit")) {
+            // I want to handle the deposit transaction
+
+        }
+
 
     }
 }
