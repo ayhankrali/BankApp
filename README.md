@@ -13,17 +13,4 @@ A simple Java application with a graphical user interface developed using the Sw
 - **Viewing Past Transactions:** Access a history of past transactions.
 - **Transferring to Users within the MySQL Database:** Users can transfer funds to other registered users.
 
-## Usage
 
-To run the application, follow these steps:
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/your-username/bank-application.git
-Open the project in your preferred Java IDE.
-
-Run the application.
-
-Open for Collaboration
-Feel free to check out the source code on GitHub and contribute to the project. If you have suggestions, find bugs, or want to add new features, open an issue or submit a pull reque
