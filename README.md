@@ -13,6 +13,10 @@
 - **Viewing Past Transactions:** Access a history of past transactions.
 - **Transferring to Users within the MySQL Database:** Users can transfer funds to other registered users.
 
+ # Database Schema
+ ![user_db](https://github.com/ayhankrali/BankApp/assets/134217567/ee803c7d-7e9f-4c8f-946b-1194b2924b5a)      ![transaction_db](https://github.com/ayhankrali/BankApp/assets/134217567/3e8748e9-166b-4826-8048-b30af6c046da)
+ 
+
 # Project Screenshots
 
 ![bank1](https://github.com/ayhankrali/BankApp/assets/134217567/cac5f861-d5a0-48cf-8574-caab4e35fd8a)
@@ -23,8 +27,6 @@
 ![bank6](https://github.com/ayhankrali/BankApp/assets/134217567/adaf148d-41a3-4d17-88fb-a19fb5dbaa14)
 ![bank7](https://github.com/ayhankrali/BankApp/assets/134217567/3ea4b6d7-b9c3-4527-a8f8-1c6123a39f48)
 
- # Database Schema
- ![user_db](https://github.com/ayhankrali/BankApp/assets/134217567/ee803c7d-7e9f-4c8f-946b-1194b2924b5a)      ![transaction_db](https://github.com/ayhankrali/BankApp/assets/134217567/3e8748e9-166b-4826-8048-b30af6c046da)
- 
+
 
 
