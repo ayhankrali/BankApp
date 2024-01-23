@@ -12,6 +12,9 @@
 - **Logging Out:** Securely log out of the account.
 - **Viewing Past Transactions:** Access a history of past transactions.
 - **Transferring to Users within the MySQL Database:** Users can transfer funds to other registered users.
+# Technologies
+Java Development Kit (JDK18) ,   MySQL Database
+   
 
  # Database Schema
  ![user_db](https://github.com/ayhankrali/BankApp/assets/134217567/ee803c7d-7e9f-4c8f-946b-1194b2924b5a)      ![transaction_db](https://github.com/ayhankrali/BankApp/assets/134217567/3e8748e9-166b-4826-8048-b30af6c046da)
