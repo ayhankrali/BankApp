@@ -1,6 +1,6 @@
 # Bank Application with Swing and MySQL
 
-A simple Java application with a graphical user interface developed using the Swing framework. This application interacts with a MySQL database to perform essential banking operations.
+ Java application with a graphical user interface developed using the Swing framework. This application interacts with a MySQL database to perform essential banking operations.
 
 ## Features
 
@@ -12,5 +12,8 @@ A simple Java application with a graphical user interface developed using the Sw
 - **Logging Out:** Securely log out of the account.
 - **Viewing Past Transactions:** Access a history of past transactions.
 - **Transferring to Users within the MySQL Database:** Users can transfer funds to other registered users.
+
+ # Database Schema
+ 
 
 
