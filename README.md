@@ -14,6 +14,7 @@
 - **Transferring to Users within the MySQL Database:** Users can transfer funds to other registered users.
 
  # Database Schema
+ ![user_db](https://github.com/ayhankrali/BankApp/assets/134217567/ee803c7d-7e9f-4c8f-946b-1194b2924b5a)
  
 
 
